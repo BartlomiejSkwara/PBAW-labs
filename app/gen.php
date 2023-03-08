@@ -1,99 +1,82 @@
 <?php
 require_once dirname(__FILE__)."/../config.php"; 
+require_once _ROOT_PATH."/app/genTypesLib.php";
 
 //1.
-$shapecharacter = $_REQUEST["shapecharacter"];
-$shapesize      = $_REQUEST["shapesize"];
-$shape     = $_REQUEST["shape"];
-
+function getParams(&$shapecharacter, &$shapesize, &$shape){
+    $shapecharacter = isset($_REQUEST["shapecharacter"])?$_REQUEST["shapecharacter"]:null;
+    $shapesize      = isset($_REQUEST["shapesize"])?$_REQUEST["shapesize"]:null;
+    $shape          = isset($_REQUEST["shape"])?$_REQUEST["shape"]:null;
+}
 
 //2.
-if(!(isset($shapecharacter) && isset($shapesize) && isset($shape))){
-    $messages [] = 'Brak parametrów';
-}
-if($shapecharacter == ""){
-    $messages [] = 'Podano pusty znak';
-}
-if($shapesize == ""){
-    $messages [] = 'Podano pusty rozmiar';
-}
-
-
-if(empty($messages)){
-
-    if (! is_numeric( $shapesize )) {
-		$messages [] = 'Podany rozmiar nie jest liczbą';
-	}
-}
-
-
-//3.
-if(empty($messages)){
-    $result = "";
-    switch ($shape){
-        case "square":
-            for($i = 1; $i<=$shapesize; $i++){
-        
-                for($j = 0; $j<$shapesize; $j++){
-                    $result=$result.$shapecharacter."&ensp;";
-                }    
-                $result=$result."<br>";
-            }
-            break;
-        
-        case "stairs":
-            for($i = 1; $i<=$shapesize; $i++){
-        
-                for($j = 0; $j<$i; $j++){
-                    $result=$result.$shapecharacter;
-                }    
-                $result=$result."<br>";
-            }
-            break;
-
-        case "triangle":
-
-            for($i = 1; $i<=$shapesize; $i++){
-                
-                for($j = 0; $j<($shapesize -$i); $j++){
-                    $result=$result."&ensp;";
-                }
-        
-                for($j = 0; $j<$i; $j++){
-                    $result=$result.$shapecharacter.$shapecharacter;
-                }    
-                $result=$result."<br>";
-            }
-            break;
-
-        default:
-            for($i = 1; $i<=$shapesize; $i++){
-                    
-                for($j = 0; $j<($shapesize -$i); $j++){
-                    $result=$result."&ensp;";
-                }
-        
-                for($j = 0; $j<$i; $j++){
-                    $result=$result.$shapecharacter.$shapecharacter;
-                }    
-                $result=$result."<br>";
-            }
-            for($i = 0; $i<=$shapesize; $i++){
-                    
-                for($j = 0; $j<$i; $j++){
-                    $result=$result."&ensp;";
-                }
-        
-                for($j = 0; $j<($shapesize-$i); $j++){
-                    $result=$result.$shapecharacter.$shapecharacter;
-                }    
-                $result=$result."<br>";
-            }
+function validateParams(&$shapecharacter, &$shapesize, &$shape, &$messages){
+    
+    if(!(isset($shapecharacter) && isset($shapesize) && isset($shape))){
+        return false;
+    }
+    if($shapecharacter == ""){
+        $messages [] = 'Podano pusty znak';
+    }
+    if($shapesize == ""){
+        $messages [] = 'Podano pusty rozmiar';
     }
 
 
-
+    if(count($messages)==0){
+        if (is_numeric( $shapesize )) {
+            return true;   
+        }
+        $messages [] = 'Podany rozmiar nie jest liczbą';
+    }
+    
+    return false;
 }
+
+function generateShape(&$shapecharacter, &$shapesize, &$shape, &$result){
+    
+    switch ($shape){
+        case "square":
+        generateSquare($result, $shapesize, $shapecharacter);
+            break;
+        
+        case "stairs":
+        generateStairs($result, $shapesize, $shapecharacter);
+            break;
+
+        case "triangle":
+        generateTriangle($result, $shapesize, $shapecharacter);
+            break;
+
+        default:
+        generateTiltedSquare($result, $shapesize, $shapecharacter);
+            
+    }
+}
+
+
+
+
+
+
+
+
+
+$shapecharacter = null;
+$shapesize = null; 
+$shape = null;
+$messages = [];
+$result = null;
+
+getParams($shapecharacter, $shapesize, $shape);
+if(validateParams($shapecharacter, $shapesize, $shape, $messages)){
+   generateShape($shapecharacter, $shapesize, $shape, $result);
+}
+
+
+
+
+
 
 include _ROOT_PATH."/app/gen_view.php";
 

@@ -3,4 +3,4 @@ require_once 'config.php';
 
 
 //przekazanie żądania do następnego dokumentu ("forward")
-include _ROOT_PATH.'/app/gen_view.php';
+include _ROOT_PATH.'/app/gen.php';
