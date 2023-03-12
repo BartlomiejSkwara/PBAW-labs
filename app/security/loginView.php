@@ -16,7 +16,7 @@
 
 
         <label for="password">Password:</label>
-        <input type="text" id = "password" name ="password">
+        <input type="password" id = "password" name ="password">
         <br>
     </fieldset>
     <input class="pure-button pure-button-primary" type="submit">

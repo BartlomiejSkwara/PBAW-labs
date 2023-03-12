@@ -1,6 +1,9 @@
 <?php
 require_once dirname(__FILE__)."/../config.php"; 
 require_once _ROOT_PATH."/app/genTypesLib.php";
+require_once _ROOT_PATH."/libs/smarty/Smarty.class.php";
+
+
 include _ROOT_PATH.'/app/security/checkSession.php';
 
 //1.
