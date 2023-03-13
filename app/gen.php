@@ -82,6 +82,17 @@ if(validateParams($genForm, $messages)){
 
 
 
-include _ROOT_PATH."/app/genView.php";
+//include _ROOT_PATH."/app/genView.php";
 
+$smarty = new Smarty();
 
+$smarty->assign("title","Generator:>");
+$smarty->assign('appURL',_APP_URL);
+$smarty->assign('rootPath',_ROOT_PATH);
+$smarty->assign('appRoot',_APP_ROOT);
+
+$smarty->assign("genForm",$genForm);
+$smarty->assign("messages",$messages);
+$smarty->assign("result",$result);
+
+$smarty->display(_ROOT_PATH."/app/genView.tpl");
