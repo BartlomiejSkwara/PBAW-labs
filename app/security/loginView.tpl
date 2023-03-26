@@ -1,4 +1,4 @@
-{extends file="{$rootPath}/templates/main.tpl"}
+{extends file="{$conf->rootPath}/templates/main.tpl"}
 {block name=body}
 	
     <div class="is-preload">
@@ -6,41 +6,52 @@
             <!-- Wrapper -->
                     <div id="wrapper">
                             <!-- Menu -->
+
+                            <nav id="menu" class="is-menu-visible">
+                                <div class="inner">
+                                <h1>Logowanie</h1>
+                                <hr/>
+
+
+                                <form method="post" action="{$conf->appRoot}/app/security/login.php">
+
+                                        <label for="login">Login:</label>
+                                        <input type="text" name="login" id="login" value=""/>
+                                        <br>
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" id="password" value="" />
+
+                                        <br/>
+                                        <input class="" type="submit" value="Zaloguj" >
+                                </form>
+                                <section>
+                                    <div class="inner">
+                                    {if (count($messages)>0)}
+                                       {foreach $messages as $msg}
+                                                <p class="message">{$msg}</p>
+                                       {/foreach}
+                                    {/if}
+                                    </div>  
+                                </section>
+                                </div>
                                     
-                                    <nav id="menu" class="is-menu-visible">
-                                            <div class="inner">
-                                            <h1>Logowanie</h1>
-                                            <hr/>
-                                            
+                                    
+                                    
+                                
+                            </nav>
 
-                                            <form method="post" action="{$appRoot}/app/security/login.php">
 
-                                                    <label for="login">Login:</label>
-                                                    <input type="text" name="login" id="login" value=""/>
-                                                    <br>
-                                                    <label for="password">Password:</label>
-                                                    <input type="password" name="password" id="password" value="" />
-                                                    
-                                                    <br/>
-                                                    <input class="" type="submit" value="Zaloguj" >
-                                            </form>
-               
-                                            
-                                            
-                                            
-                                            
-                                            </div>
-                                    </nav>
+
                     </div>
 
             <!-- Scripts -->
-                    <script src="{$rootPath}/assets/js/jquery.min.js"></script>
-                    <script src="{$rootPath}/assets/js/jquery.scrolly.min.js"></script>
-                    <script src="{$rootPath}/assets/js/jquery.scrollex.min.js"></script>
-                    <script src="{$rootPath}/assets/js/browser.min.js"></script>
-                    <script src="{$rootPath}/assets/js/breakpoints.min.js"></script>
-                    <script src="{$rootPath}/assets/js/util.js"></script>
-                    <script src="{$rootPath}/assets/js/main.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/jquery.min.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/jquery.scrolly.min.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/jquery.scrollex.min.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/browser.min.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/breakpoints.min.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/util.js"></script>
+                    <script src="{$conf->rootPath}/assets/js/main.js"></script>
     </div>  
 
  

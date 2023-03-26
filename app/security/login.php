@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__FILE__)."/../../config.php"; 
-require_once _ROOT_PATH."/libs/smarty/Smarty.class.php";
+require_once $conf->rootPath."/libs/smarty/Smarty.class.php";
 
 //1.
 function getLoginParams(&$loginForm){
@@ -54,23 +54,22 @@ $messages = [];
 
 getLoginParams($loginForm );
 if(validateLoginParams($loginForm, $messages)){
-    header("Location: "._APP_URL);
+    header("Location: ".$conf->appURL);
     echo "v1 validation complete";
 }
 else{
     $smarty = new Smarty();
 
     $smarty->assign("title","Logowanko");
-    $smarty->assign('appURL',_APP_URL);
-    $smarty->assign('rootPath',_ROOT_PATH);
-    $smarty->assign('appRoot',_APP_ROOT);
+    $smarty->assign('conf',$conf);
+
 
     $smarty->assign("genForm",$loginForm);
     $smarty->assign("messages",$messages);
     $smarty->assign("onlyBody",true);
 
     
-    $smarty->display(_ROOT_PATH."/app/security/loginView.tpl");
+    $smarty->display($conf->rootPath."/app/security/loginView.tpl");
 
 }
 

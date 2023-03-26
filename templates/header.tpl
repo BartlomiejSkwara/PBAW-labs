@@ -1,8 +1,7 @@
 <!-- Header -->
         <header id="header">
-                <a href="index.html" class="logo"><strong>Forty</strong> <span>by HTML5 UP</span></a>
+                <a href="{$conf->actionRoot}mainMenu" class="logo"><strong>Moja</strong> <span>stronka :></span></a>
                 <nav>
-                        <a href="{$appRoot}/app/security/logout.php">Wyloguj</a>
-
+                        <a href="{$conf->actionRoot}logout">Wyloguj</a>
                 </nav>
         </header>  

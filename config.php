@@ -1,14 +1,14 @@
 <?php
-define('_SERVER_NAME', 'localhost:80');
-define('_SERVER_URL', 'http://'._SERVER_NAME);
-define('_APP_ROOT', '/php_01_generator');
-define('_APP_URL', _SERVER_URL._APP_ROOT);
-define("_ROOT_PATH", dirname(__FILE__));
 
+require_once "Config.class.php";
 
-function securePrint(&$value){
-    
-    if(isset($value)){
-        echo $value;
-    }
-}
+$conf = new Config();
+$conf->rootPath=dirname(__FILE__);
+$conf->serverName='localhost:80';
+$conf->serverURL='http://'.$conf->serverName;
+$conf->appRoot='/php_01_generator';
+$conf->appURL=$conf->serverURL.$conf->appRoot;
+
+$conf->actionRoot=$conf->appRoot.'/app/ctrl.php?action=';
+$conf->actionURL=$conf->serverURL.$conf->actionRoot;
+        
