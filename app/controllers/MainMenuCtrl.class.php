@@ -1,6 +1,9 @@
 <?php
-require_once $conf->rootPath."/libs/smarty/Smarty.class.php";
-require_once "MainMenuElement.class.php";
+namespace app\controllers;
+
+use app\elements\MainMenuElement;
+
+
 class MainMenuCtrl{
 
     private $menuElements = array();
@@ -24,15 +27,11 @@ class MainMenuCtrl{
 
     
     public function generateView(){
-        foreach ($this->menuElements as $value)
-        {
-        global $conf;
-        $smarty = new Smarty();
 
-        $smarty->assign("title","MainMenu");
-        $smarty->assign("conf",$conf);
-        $smarty->assign("elements",$this->menuElements);
-        $smarty->display($conf->rootPath."/app/mainMenu/mainMenuView.tpl");}
+        getSmarty()->assign("title","MainMenu");
+        getSmarty()->assign("elements",$this->menuElements);
+        getSmarty()->display("mainMenuView.tpl");
+
     }
     
 }

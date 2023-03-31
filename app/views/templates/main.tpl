@@ -17,9 +17,9 @@
 <body>
 
 <main id = "wrapper">
-    {if $onlyBody|default:false ==false}{include file="{$conf->rootPath}/templates/header.tpl"}{/if}
+    {if $onlyBody|default:false ==false}{include file="header.tpl"}{/if}
     {block name=body}PUSTKA :<<<{/block}
-    {if $onlyBody|default:false ==false}{include file="{$conf->rootPath}/templates/footer.tpl"}{/if}
+    {if $onlyBody|default:false ==false}{include file="footer.tpl"}{/if}
 
 </main>
 

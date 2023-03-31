@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-26 11:41:02
-  from 'E:\XAMPP\htdocs\php_01_generator\app\security\loginView.tpl' */
+/* Smarty version 4.2.1, created on 2023-03-31 10:49:10
+  from 'E:\XAMPP\htdocs\php_01_generator\app\views\loginView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6420132e2a6bf5_63802796',
+  'unifunc' => 'content_64269e869da9b3_82096978',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'f90a471ec2d4b3fd9d9310acdc3ab67ef5619cbb' => 
+    'a72b4aad47281f96b46e6915fca8b7ff59394c87' => 
     array (
-      0 => 'E:\\XAMPP\\htdocs\\php_01_generator\\app\\security\\loginView.tpl',
-      1 => 1679823659,
+      0 => 'E:\\XAMPP\\htdocs\\php_01_generator\\app\\views\\loginView.tpl',
+      1 => 1680252548,
       2 => 'file',
     ),
   ),
@@ -20,28 +20,28 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6420132e2a6bf5_63802796 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64269e869da9b3_82096978 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4792119046420132e1f02d6_85918237', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_162394150964269e869cebb6_67906539', 'body');
 ?>
 
 
 
 
 
-<?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, ((string)$_smarty_tpl->tpl_vars['conf']->value->rootPath)."/templates/main.tpl");
+<?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'body'} */
-class Block_4792119046420132e1f02d6_85918237 extends Smarty_Internal_Block
+class Block_162394150964269e869cebb6_67906539 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_4792119046420132e1f02d6_85918237',
+    0 => 'Block_162394150964269e869cebb6_67906539',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -60,9 +60,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                                 <hr/>
 
 
-                                <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->appRoot;?>
-/app/security/login.php">
-
+                                <form method="post" action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->actionRoot;?>
+login">
+                                    
                                         <label for="login">Login:</label>
                                         <input type="text" name="login" id="login" value=""/>
                                         <br>
@@ -74,9 +74,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                                 </form>
                                 <section>
                                     <div class="inner">
-                                    <?php if ((count($_smarty_tpl->tpl_vars['messages']->value) > 0)) {?>
+                                    <?php if ((count($_smarty_tpl->tpl_vars['messages']->value->getErrors()) > 0)) {?>
                                        <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['messages']->value, 'msg');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['messages']->value->getErrors(), 'msg');
 $_smarty_tpl->tpl_vars['msg']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['msg']->value) {
 $_smarty_tpl->tpl_vars['msg']->do_else = false;

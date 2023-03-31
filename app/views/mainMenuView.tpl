@@ -1,4 +1,4 @@
-{extends file="{$conf->rootPath}/templates/main.tpl"}
+{extends file="main.tpl"}
 {block name = body}
 
 <!-- Banner -->

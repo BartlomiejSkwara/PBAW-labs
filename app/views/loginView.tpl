@@ -1,4 +1,4 @@
-{extends file="{$conf->rootPath}/templates/main.tpl"}
+{extends file="main.tpl"}
 {block name=body}
 	
     <div class="is-preload">
@@ -13,8 +13,8 @@
                                 <hr/>
 
 
-                                <form method="post" action="{$conf->appRoot}/app/security/login.php">
-
+                                <form method="post" action="{$conf->actionRoot}login">
+                                    
                                         <label for="login">Login:</label>
                                         <input type="text" name="login" id="login" value=""/>
                                         <br>
@@ -26,8 +26,8 @@
                                 </form>
                                 <section>
                                     <div class="inner">
-                                    {if (count($messages)>0)}
-                                       {foreach $messages as $msg}
+                                    {if (count($messages->getErrors())>0)}
+                                       {foreach $messages->getErrors() as $msg}
                                                 <p class="message">{$msg}</p>
                                        {/foreach}
                                     {/if}

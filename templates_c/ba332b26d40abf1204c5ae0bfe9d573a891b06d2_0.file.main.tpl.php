@@ -1,26 +1,28 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-26 11:32:10
-  from 'E:\XAMPP\htdocs\php_01_generator\templates\main.tpl' */
+/* Smarty version 4.2.1, created on 2023-03-31 10:00:00
+  from 'E:\XAMPP\htdocs\php_01_generator\app\views\templates\main.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6420111a056993_60199531',
+  'unifunc' => 'content_6426930068c5d5_25759821',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '133126402b388f454fc0d745e5cfbee4e802db0c' => 
+    'ba332b26d40abf1204c5ae0bfe9d573a891b06d2' => 
     array (
-      0 => 'E:\\XAMPP\\htdocs\\php_01_generator\\templates\\main.tpl',
-      1 => 1679823128,
+      0 => 'E:\\XAMPP\\htdocs\\php_01_generator\\app\\views\\templates\\main.tpl',
+      1 => 1680249599,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:header.tpl' => 1,
+    'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_6420111a056993_60199531 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6426930068c5d5_25759821 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -48,14 +50,14 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 
 <main id = "wrapper">
     <?php if ((($tmp = $_smarty_tpl->tpl_vars['onlyBody']->value ?? null)===null||$tmp==='' ? false ?? null : $tmp) == false) {
-$_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['conf']->value->rootPath)."/templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+$_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }?>
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15588352116420111a054ff5_26218022', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15519465296426930068af22_27959845', 'body');
 ?>
 
     <?php if ((($tmp = $_smarty_tpl->tpl_vars['onlyBody']->value ?? null)===null||$tmp==='' ? false ?? null : $tmp) == false) {
-$_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['conf']->value->rootPath)."/templates/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+$_smarty_tpl->_subTemplateRender("file:footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 }?>
 
 </main>
@@ -70,12 +72,12 @@ $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['conf']->value-
 
 <?php }
 /* {block 'body'} */
-class Block_15588352116420111a054ff5_26218022 extends Smarty_Internal_Block
+class Block_15519465296426930068af22_27959845 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_15588352116420111a054ff5_26218022',
+    0 => 'Block_15519465296426930068af22_27959845',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

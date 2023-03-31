@@ -1,19 +1,15 @@
 <?php
+namespace app\controllers;
 
-require_once 'GenForm.class.php';
-require_once $conf->rootPath.'/libs/Messages.class.php';
-require_once 'generativeFunctions.php';
-require_once $conf->rootPath."/libs/smarty/Smarty.class.php";
+use app\forms\GenForm;
 
 class GenCtrl{
     
     private $genForm;
-    private $messages;
     private $result;
    
     public function __construct(){
         $this->genForm  = new GenForm();
-        $this->messages = new Messages();
         $this->result   = null;
     }
     
@@ -26,10 +22,10 @@ class GenCtrl{
     }
 
     private function getParams(){
-        
-        $this->genForm->shapecharacter = isset($_REQUEST["shapecharacter"])?$_REQUEST["shapecharacter"]:null;
-        $this->genForm->shapesize = isset($_REQUEST["shapesize"])?$_REQUEST["shapesize"]:null;
-        $this->genForm->shape = isset($_REQUEST["shape"])?$_REQUEST["shape"]:null;
+
+        $this->genForm->shapecharacter = getFromRequest("shapecharacter");
+        $this->genForm->shapesize = getFromRequest("shapesize");
+        $this->genForm->shape = getFromRequest("shape");
         
         
     }
@@ -43,19 +39,20 @@ class GenCtrl{
         }
         
         if($this->genForm->shapecharacter == ""){
-            $this->messages->addError('Podano pusty znak');
+            
+            getMessages()->addError('Podano pusty znak');
         }
         if($this->genForm->shapesize == ""){
-            $this->messages->addError('Podano pusty rozmiar');
+            getMessages()->addError('Podano pusty rozmiar');
         }
 
 
-        if($this->messages->isEmpty()){
+        if(getMessages()->isEmpty()){
                 
             if (is_numeric($this->genForm->shapesize)) {
                 return true;   
             }
-            $this->messages->addError('Podany rozmiar nie jest liczbą');
+            getMessages()->addError('Podany rozmiar nie jest liczbą');
         }
 
         return false;
@@ -85,17 +82,10 @@ class GenCtrl{
     }
     
     public function generateView(){
-        global $conf;
-        $smarty = new Smarty();
-        
-        $smarty->assign("title","Generator:>");
-        $smarty->assign('conf',$conf);
-
-        $smarty->assign("genForm",$this->genForm);
-        $smarty->assign("messages",$this->messages);
-        $smarty->assign("result",$this->result);
-        //echo $result;
-        $smarty->display($conf->rootPath."/app/generator/genView.tpl");
+        getSmarty()->assign("title","Generator:>");
+        getSmarty()->assign("genForm",$this->genForm);
+        getSmarty()->assign("result",$this->result);
+        getSmarty()->display("genView.tpl");
     }
     
     

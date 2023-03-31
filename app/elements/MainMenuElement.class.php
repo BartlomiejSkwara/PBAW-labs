@@ -1,4 +1,5 @@
 <?php
+namespace app\elements;
 
 class MainMenuElement{
     public $title;
