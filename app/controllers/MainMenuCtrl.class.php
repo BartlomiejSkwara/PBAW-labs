@@ -11,7 +11,7 @@ class MainMenuCtrl{
 
         $this->menuElements[]= new MainMenuElement("Generator Kształtów", 
                 "Ten prost lecz \"skuteczny\" :> generator pozwoli ci na stworzenie wybronego przez ciebie kształtu korzystając z określonego przez ciebie znaku ASCII.",
-                "generateView");
+                "generatorView");
         $this->menuElements[]= new MainMenuElement("Test", 
                 "Testowy opis , :> lorem ipsum dolor sit amet consect ...",
                 "");
@@ -26,7 +26,7 @@ class MainMenuCtrl{
     
 
     
-    public function generateView(){
+    public function action_mainMenu(){
 
         getSmarty()->assign("title","MainMenu");
         getSmarty()->assign("elements",$this->menuElements);

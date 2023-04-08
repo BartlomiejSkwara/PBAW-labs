@@ -5,7 +5,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 use app\forms\LoginForm as LFORM;
-
+use app\transfer\User;
 class SecurityCtrl {
     
     private $loginForm;
@@ -36,16 +36,15 @@ class SecurityCtrl {
 
 
         if ($this->loginForm->login == "admin" && $this->loginForm->password == "admin"){
-            session_start();
-            $_SESSION["role"] = "admin";
-            $_SESSION["login"] = $this->loginForm->login;
-            echo  "admin done";
+            $user = new User($this->loginForm->login, "admin");
+            $_SESSION["user"] = serialize($user);
+            addRole($user->role);
             return true;
         }
         if ($this->loginForm->login == "user" && $this->loginForm->password == "1"){
-            session_start();
-            $_SESSION["role"] = "user";
-            $_SESSION["login"] = $this->loginForm->login;
+            $user = new User($this->loginForm->login, "user");
+            $_SESSION["user"] = serialize($user);
+            addRole($user->role);
             return true;
         }
 
@@ -54,51 +53,26 @@ class SecurityCtrl {
     }
 
     
-    public function runController() {
+    public function action_login() {
         $this->getParams();
         if($this->validateParams()){
+            //header("Location: ".getConfig()->actionURL."mainMenu");
 
-            header("Location: ". getConfig()->appURL);
+            header("Location: ". getConfig()->appURL."/");
         }
         else{
-
-            getSmarty()->assign("title","Logowanko");
-
-            //getSmarty()->assign("loginForm", $this->loginForm);
-            getSmarty()->assign("onlyBody",true);
-
-
-            getSmarty()->display("loginView.tpl");
-
+            $this->generateView();
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    static function checkSession() {
-        session_start();
-
-        $role = isset($_SESSION['role'])?$_SESSION['role']:'';
-
-        if($role==''){
-            $security = new SecurityCtrl();
-            $security->runController();
-            exit();
-        }
+    private function generateView(){
+        getSmarty()->assign("title","Logowanko");
+        getSmarty()->assign("onlyBody",true);
+        getSmarty()->display("loginView.tpl");
     }
     
-    
-    static function logout() {
-        session_start();
+    static function action_logout() {
+        if(session_status()==PHP_SESSION_NONE){session_start();}
         session_destroy();
         header("Location: ". getConfig()->appURL);
 

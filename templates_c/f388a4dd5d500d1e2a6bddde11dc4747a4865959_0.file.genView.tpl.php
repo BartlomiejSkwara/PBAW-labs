@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-31 10:53:20
+/* Smarty version 4.2.1, created on 2023-04-08 17:50:14
   from 'E:\XAMPP\htdocs\php_01_generator\app\views\genView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_64269f804f4ba1_89773810',
+  'unifunc' => 'content_64318d36dd4b64_09792483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f388a4dd5d500d1e2a6bddde11dc4747a4865959' => 
     array (
       0 => 'E:\\XAMPP\\htdocs\\php_01_generator\\app\\views\\genView.tpl',
-      1 => 1680249653,
+      1 => 1680969008,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64269f804f4ba1_89773810 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64318d36dd4b64_09792483 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_99139952964269f804e5887_24696325', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_174589677364318d36d90ea4_10152948', 'body');
 ?>
 
 
@@ -34,12 +34,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_99139952964269f804
                                                 <?php $_smarty_tpl->inheritance->endChild($_smarty_tpl, "main.tpl");
 }
 /* {block 'body'} */
-class Block_99139952964269f804e5887_24696325 extends Smarty_Internal_Block
+class Block_174589677364318d36d90ea4_10152948 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_99139952964269f804e5887_24696325',
+    0 => 'Block_174589677364318d36d90ea4_10152948',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -62,7 +62,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     </header>
 
                     <form  action = "<?php echo $_smarty_tpl->tpl_vars['conf']->value->actionRoot;?>
-generateProcess" method="post">
+generatorProcess" method="post">
                     <div class ="fields";>
                         
                         <div class="field quarter">

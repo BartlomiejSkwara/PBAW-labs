@@ -16,7 +16,7 @@
                             <h1>Generator kształtów</h1>
                     </header>
 
-                    <form  action = "{$conf->actionRoot}generateProcess" method="post">
+                    <form  action = "{$conf->actionRoot}generatorProcess" method="post">
                     <div class ="fields";>
                         
                         <div class="field quarter">

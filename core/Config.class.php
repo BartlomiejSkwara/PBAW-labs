@@ -9,4 +9,7 @@ class Config{
     public $actionRoot;
     public $actionURL;
     
+    
+    public $login_action;
+    public $roles;
 }

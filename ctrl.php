@@ -3,44 +3,13 @@
 require_once "init.php"; 
 
 
-$action = getFromRequest('action');
-use app\controllers\MainMenuCtrl;
-use app\controllers\GenCtrl;
-use app\controllers\SecurityCtrl;
+getRouter()->setDefaultRoute('mainMenu');
+getRouter()->setNoPermissionRoute('login');
 
-switch($action){
-    
-    case 'mainMenu' :
-        SecurityCtrl::checkSession();
-        $menu = new MainMenuCtrl();
-        $menu->generateView();
-        break;
-    
-    case 'generateView' :
-        SecurityCtrl::checkSession();
-        $gen = new GenCtrl();
-        $gen->generateView();
-        break;
-    
-    case 'generateProcess':
-        SecurityCtrl::checkSession();
-        $gen = new GenCtrl();
-        $gen->runController();
-        break;
-    
-    case 'logout':
-        SecurityCtrl::logout();
-        break;
-    
-    case 'login':
-        $security = new SecurityCtrl();
-        $security->runController();
-        break;
-    
-    default :
-        SecurityCtrl::checkSession();
-        $menu = new MainMenuCtrl();
-        $menu->generateView();
-        break;
+getRouter()->addRoute('mainMenu','MainMenuCtrl',['user','admin']);
+getRouter()->addRoute('generatorView','GenCtrl',['user','admin']);
+getRouter()->addRoute('generatorProcess','GenCtrl',['user','admin']);
+getRouter()->addRoute('logout','SecurityCtrl',['user','admin']);
+getRouter()->addRoute('login','SecurityCtrl');
 
-}
+getRouter()->go();

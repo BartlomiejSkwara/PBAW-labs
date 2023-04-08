@@ -13,12 +13,12 @@ class GenCtrl{
         $this->result   = null;
     }
     
-    public function runController(){
+    public function action_generatorProcess(){
         $this->getParams();
         if($this->validateParams()){
            $this->process();
         }
-        $this->generateView();
+        $this->action_generatorView();
     }
 
     private function getParams(){
@@ -81,7 +81,7 @@ class GenCtrl{
         
     }
     
-    public function generateView(){
+    public function action_generatorView(){
         getSmarty()->assign("title","Generator:>");
         getSmarty()->assign("genForm",$this->genForm);
         getSmarty()->assign("result",$this->result);
