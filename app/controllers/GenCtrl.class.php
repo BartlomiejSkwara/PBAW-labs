@@ -7,17 +7,70 @@ class GenCtrl{
     
     private $genForm;
     private $result;
-   
+    private $tasksHistory;
+    
     public function __construct(){
         $this->genForm  = new GenForm();
         $this->result   = null;
     }
     
+    private function historyGetFromDB() {
+        try {
+           $this->tasksHistory= getDB()->select('tasks',[
+               'resultID',
+               'date',
+               'char',
+               'size',
+               'shape'
+           ]);
+           
+        } catch (\PDOException $exc) {
+            if (getConf()->debug) echo getMessages()->addError($exc->getMessage());
+        }
+    }
+
+
+    public function action_generatorRemove() {
+        $removeId = getFromRequest("removeId");
+        try {
+            getDB() ->delete('tasks', [
+               'resultID' => $removeId
+           ]);
+           
+        } catch (\PDOException $exc) {
+            if (getConf()->debug) echo getMessages()->addError($exc->getMessage());
+        }
+        $this->action_generatorView();
+
+        
+    }
+    
+    private function historyAdd(){
+        
+        try {
+            getDB() ->insert('tasks', [
+               'date'=> date("Y-m-d H:i:s"),
+               'shape'=> $this->genForm->shape,
+               'size'=> $this->genForm->shapesize,
+               'char' => $this->genForm->shapecharacter,
+           ]);
+           
+        } catch (\PDOException $exc) {
+            if (getConf()->debug) echo getMessages()->addError($exc->getMessage());
+        }
+
+
+
+   
+    }
     public function action_generatorProcess(){
         $this->getParams();
         if($this->validateParams()){
            $this->process();
+           $this->historyAdd();
+           
         }
+        
         $this->action_generatorView();
     }
 
@@ -82,12 +135,16 @@ class GenCtrl{
     }
     
     public function action_generatorView(){
+        $this->historyGetFromDB();
         getSmarty()->assign("title","Generator:>");
         getSmarty()->assign("genForm",$this->genForm);
         getSmarty()->assign("result",$this->result);
+        getSmarty()->assign("history", $this->tasksHistory);
         getSmarty()->display("genView.tpl");
+        
     }
     
+  
     
 
 }

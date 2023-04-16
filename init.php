@@ -24,7 +24,6 @@ function &getMessages(){
 };
 
 
-//TODO spytaj czy to ma sens  :>
 $smarty = null;
 function &getSmarty(){
     global $smarty;
@@ -63,6 +62,25 @@ function &getRouter(): core\Router {
     return $router;
 }
 
+$db = null;
+function &getDB(){
+    global $conf, $db;
+    if (!isset($db)){
+        require_once 'libs/medoo/Medoo.php';
+        $db = new \Medoo\Medoo([
+            'database_type' => &$conf->dbType,
+            'server' => &$conf->dbServer,
+            'database_name' => &$conf->dbName,
+            'username' => &$conf->dbUser,
+            'password' => &$conf->dbPass,
+            'charset' => &$conf->dbCharset,
+            'port' => &$conf->dbPort,
+            'prefix' => &$conf->dbPrefix,
+            'option' => &$conf->dbOption
+        ]);
+    }
+    return $db;
+}
 
 require_once 'core/functions.php';
 

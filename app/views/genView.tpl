@@ -43,6 +43,7 @@
                             <label class="invisible">Submit</label>
                             <input class="primary" type="submit" value="Generuj"></input>
                         </div>
+
                         
                     </div>
                     
@@ -75,17 +76,49 @@
            </div>  
     </section>     
                                 
+    <section>
+        <div class = "inner">    
+            <h2>Historia Generowań</h2>
+            <div class="table-wrapper">
+                <table>
+                        <thead>
+                            <tr>
+                                <th>Znak</th>
+                                <th>Rozmiar</th>
+                                <th>Kształt</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {if (count($history)>0)}
+                                {foreach $history as $task}
+                                    <tr>
+                                        <td>{$task["char"]}</td>
+                                        <td>{$task["size"]}</td>
+                                        <td>{$task["shape"]}</td>
+                                        <td>{$task["date"]}</td>   
+                                        <td><a href="{$conf->actionRoot}generatorProcess&shapecharacter={urlencode($task["char"])}&shapesize={$task["size"]}&shape={$task["shape"]}" class="button primary small">Generuj</a></td>
+                                        <td><a href="{$conf->actionRoot}generatorRemove&removeId={$task["resultID"]}" class="button primary small"> Usuń  </a></td>
+                                    </tr>
+                                {/foreach}
+                            {else}
+                                <tr>
+                                    <td>Brak Danych</td>
+                                </tr>
+                            {/if}
+                        </tbody>
+                        {*<tfoot>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td>100.00</td>
+                                </tr>
+                        </tfoot>*}
+                </table>
+        </div>
+        </div>
+    </section>
 
 </div>
-
-
-
-
-
-
-
-
-
 
 {/block}
 
